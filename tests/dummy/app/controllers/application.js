@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   rows: 4,
   cols: 4,
   weightOfYes: 50,
-  delay: 1000,
+  delay: 100,
   isTwinkling: false,
   defaults: {},
 
@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
 
   updateDelay: Ember.observer('delay', function() {
     let poller = this.get('yesnoPoller'),
-        delay = this.get('delay');
+        delay = this.get('delay') * 10;
 
     poller.setInterval(delay);
   }),
