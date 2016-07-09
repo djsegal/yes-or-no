@@ -33,6 +33,10 @@ export default Ember.Controller.extend({
 
   actions: {
     restart: function() {
+      let poller = this.get('yesnoPoller'),
+          isTwinkling = this.get('isTwinkling');
+      if ( isTwinkling ) { poller.stop(); }
+
       let didUpdate = false;
       for ( let key of Object.keys(this.get('defaults')) ) {
         let oldValue = this.get(key),
