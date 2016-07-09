@@ -1,6 +1,6 @@
 {{yesno-navbar}}
 
-<div class="layout-row flex">
+<div class="{{ if media.isDesktop 'layout-row' 'layout-column'}} flex">
 
   <div class="layout-column flex-30">
 
@@ -9,7 +9,7 @@
       {{#card.title as |title|}}
         {{#title.text as |text|}}
           {{#text.headline}}Grid Generator{{/text.headline}}
-          {{#text.subhead}}The Nitty Griddy{{/text.subhead}}
+          {{#text.subhead class=(if media.isMobile 'hide')}}The Nitty Griddy{{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
 
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div layout>
+        <div layout class="{{ if media.isMobile 'hide'}}">
           <div flex="20" layout layout-align="center center">
             <span>Rows</span>
           </div>
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div layout>
+        <div layout class="{{ if media.isMobile 'hide'}}">
           <div flex="20" layout layout-align="center center">
             <span>Cols</span>
           </div>
