@@ -1,7 +1,7 @@
 {
   "name": "yes-or-no",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Add simple yes/no handlebars helper",
   "directories": {
     "doc": "doc",
     "test": "tests"
