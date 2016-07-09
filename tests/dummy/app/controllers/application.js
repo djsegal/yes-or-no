@@ -16,15 +16,27 @@ export default Ember.Controller.extend({
     this.set('defaults', defaults);
   }),
 
+  triggerUpdate: function() {
+    this.notifyPropertyChange('weightOfYes');
+  },
+
   actions: {
     restart: function() {
+      let didUpdate = false;
       for ( let key of Object.keys(this.get('defaults')) ) {
-        this.set(key, this.get('defaults')[key]);
+        let oldValue = this.get(key),
+            newValue = this.get('defaults')[key];
+
+        if ( newValue === oldValue ) { continue; }
+        if ( !didUpdate ) { didUpdate = true; }
+        this.set(key, newValue);
       }
+
+      if ( !didUpdate ) { this.triggerUpdate(); }
     },
 
     refresh: function() {
-      this.notifyPropertyChange('weightOfYes');
+      this.triggerUpdate();
     }
   }
 });
