@@ -1,16 +1,20 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  yesnoPoller: Ember.inject.service(),
   rows: 4,
   cols: 4,
   weightOfYes: 50,
+  delay: 1000,
+  isTwinkling: false,
   defaults: {},
 
   setDefaults: Ember.on('init', function() {
     let defaults = {
       rows: this.get('rows'),
       cols: this.get('cols'),
-      weightOfYes: this.get('weightOfYes')
+      weightOfYes: this.get('weightOfYes'),
+      isTwinkling: this.get('isTwinkling')
     };
 
     this.set('defaults', defaults);
@@ -19,6 +23,13 @@ export default Ember.Controller.extend({
   triggerUpdate: function() {
     this.notifyPropertyChange('weightOfYes');
   },
+
+  updateDelay: Ember.observer('delay', function() {
+    let poller = this.get('yesnoPoller'),
+        delay = this.get('delay');
+
+    poller.setInterval(delay);
+  }),
 
   actions: {
     restart: function() {
@@ -37,6 +48,18 @@ export default Ember.Controller.extend({
 
     refresh: function() {
       this.triggerUpdate();
+    },
+
+    twinkle: function() {
+      let poller = this.get('yesnoPoller'),
+          isTwinkling = this.get('isTwinkling');
+
+      this.set('isTwinkling', !isTwinkling);
+      if ( isTwinkling ) { poller.stop(); return; }
+
+      poller.start(this, function() {
+        this.triggerUpdate();
+      });
     }
   }
 });

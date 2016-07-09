@@ -27,6 +27,16 @@
 
         <div layout class="{{ if media.isMobile 'hide'}}">
           <div flex="20" layout layout-align="center center">
+            <span>Delay</span>
+          </div>
+          {{paper-slider flex=true min='1' max='5000' value=delay class='md-primary'}}
+          <div flex="15" layout layout-align="center center">
+            {{input type="number" value=delay}}
+          </div>
+        </div>
+
+        <div layout class="{{ if media.isMobile 'hide'}}">
+          <div flex="20" layout layout-align="center center">
             <span>Rows</span>
           </div>
           {{paper-slider flex=true min='1' max='25' value=rows class='md-primary'}}
@@ -48,6 +58,7 @@
       {{/card.content}}
 
       {{#card.actions}}
+        {{#paper-button onClick=(action "twinkle")}}Twinkle{{/paper-button}}
         {{#paper-button onClick=(action "restart")}}Restart{{/paper-button}}
         {{#paper-button onClick=(action "refresh")}}Refresh{{/paper-button}}
       {{/card.actions}}
