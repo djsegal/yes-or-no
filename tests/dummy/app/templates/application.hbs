@@ -1,3 +1,78 @@
-<h2 id="title">Welcome to Ember</h2>
+{{yesno-navbar}}
 
-{{outlet}}
+<div class="layout-row flex">
+
+  <div class="layout-column flex-30">
+
+    {{#paper-card class="flex" as |card|}}
+
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}Grid Generator{{/text.headline}}
+          {{#text.subhead}}The Nitty Griddy{{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+
+      {{#card.content}}
+
+        <div layout>
+          <div flex="20" layout layout-align="center center">
+            <span>%Yes</span>
+          </div>
+          {{paper-slider flex=true min='0' max='100' value=weightOfYes class='md-primary'}}
+          <div flex="15" layout layout-align="center center">
+            {{input type="number" value=weightOfYes}}
+          </div>
+        </div>
+
+        <div layout>
+          <div flex="20" layout layout-align="center center">
+            <span>Rows</span>
+          </div>
+          {{paper-slider flex=true min='1' max='25' value=rows class='md-primary'}}
+          <div flex="15" layout layout-align="center center">
+            {{input type="number" value=rows}}
+          </div>
+        </div>
+
+        <div layout>
+          <div flex="20" layout layout-align="center center">
+            <span>Cols</span>
+          </div>
+          {{paper-slider flex=true min='1' max='25' value=cols class='md-primary'}}
+          <div flex="15" layout layout-align="center center">
+            {{input type="number" value=cols}}
+          </div>
+        </div>
+
+      {{/card.content}}
+
+      {{#card.actions}}
+        {{#paper-button onClick=(action "restart")}}Restart{{/paper-button}}
+        {{#paper-button onClick=(action "refresh")}}Refresh{{/paper-button}}
+      {{/card.actions}}
+
+    {{/paper-card}}
+
+  </div>
+
+  <div class="layout-column flex">
+
+    {{#each (range 1 rows true) as |i|}}
+
+      <div class="layout-row flex">
+
+        {{#each (range 1 cols true) as |j|}}
+
+          {{#paper-card class=(concat "flex " (if (yes-or-no (div weightOfYes 100)) 'green' 'red')) as |card|}}
+          {{/paper-card}}
+
+        {{/each}}
+
+      </div>
+
+    {{/each}}
+
+  </div>
+
+</div>
