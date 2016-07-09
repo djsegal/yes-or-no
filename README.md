@@ -1,26 +1,19 @@
-# Yes-or-no
+### Yes or No
 
-This README outlines the details of collaborating on this Ember addon.
+-------------
 
-## Installation
+Allow simple binary forking inside handlebar files for Ember:
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+{{#if (yes-or-no)}}
+  yay!
+{{else}}
+  boooo
+{{/if}}
+```
 
-## Running
+or for a weighted probability skewed towards yes:
 
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+```
+{{if (yes-or-no 0.75) 'green' 'red'}}
+```
