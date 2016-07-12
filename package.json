@@ -12,7 +12,7 @@
     "test": "ember try:testall",
     "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"; git push; git checkout -"
   },
-  "repository": "",
+  "repository": "https://github.com/djsegal/yes-or-no",
   "engines": {
     "node": ">= 0.10.0"
   },
