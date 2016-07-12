@@ -1,6 +1,6 @@
 {
   "name": "yes-or-no",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Add simple yes/no handlebars helper",
   "directories": {
     "doc": "doc",
