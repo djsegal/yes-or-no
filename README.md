@@ -1,4 +1,6 @@
-### Yes or No
+[![Ember Observer Score](http://emberobserver.com/badges/yes-or-no.svg)](http://emberobserver.com/addons/yes-or-no)
+
+### Yes or No 
 
 -------------
 
